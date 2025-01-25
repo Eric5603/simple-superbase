@@ -16,12 +16,184 @@
       crossorigin="anonymous"
     />
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script>
-      const { createClient } = supabase;
-      const supabaseUrl = '';  // Your Supabase URL
-      const supabaseKey = '';  // Your Supabase anonymous key
-      const supabaseClient = createClient(supabaseUrl, supabaseKey);
-    </script>
+    <style>
+      /* Modern Futuristic Styling */
+      :root {
+        --primary-color: #00d1ff; /* Futuristic blue */
+        --secondary-color: #ff00ff; /* Futuristic pink */
+        --background-color: #1a1a1a; /* Dark background */
+        --text-color: #ffffff; /* White text */
+        --card-background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+        --border-radius: 15px;
+        --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        --transition: all 0.3s ease;
+      }
+
+      /* General Styles */
+      body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Hero Section */
+      .hero.is-primary {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: var(--text-color);
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+        overflow: hidden;
+      }
+
+      .hero.is-primary .title {
+        font-size: 3rem;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero.is-primary .subtitle {
+        font-size: 1.5rem;
+        opacity: 0.9;
+      }
+
+      /* Navbar */
+      .navbar {
+        background: transparent !important;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .navbar-item {
+        color: var(--text-color) !important;
+        font-weight: bold;
+        transition: var(--transition);
+      }
+
+      .navbar-item:hover {
+        color: var(--primary-color) !important;
+      }
+
+      .navbar-burger {
+        color: var(--text-color);
+      }
+
+      /* Sections */
+      .section {
+        padding: 4rem 1.5rem;
+      }
+
+      .section .title {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .section .subtitle {
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+
+      /* Form Styling */
+      #contact-form {
+        background: var(--card-background);
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .label {
+        color: var(--text-color);
+        font-weight: bold;
+      }
+
+      .input, .textarea, .select select {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: var(--text-color);
+        border-radius: var(--border-radius);
+        transition: var(--transition);
+      }
+
+      .input:focus, .textarea:focus, .select select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 8px var(--primary-color);
+      }
+
+      .input::placeholder, .textarea::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .select:not(.is-multiple):not(.is-loading)::after {
+        border-color: var(--primary-color);
+      }
+
+      .button.is-primary {
+        background: var(--primary-color);
+        color: var(--background-color);
+        border: none;
+        border-radius: var(--border-radius);
+        font-weight: bold;
+        transition: var(--transition);
+      }
+
+      .button.is-primary:hover {
+        background: var(--secondary-color);
+        transform: translateY(-2px);
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--card-background);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 2rem 1.5rem;
+        margin-top: 4rem;
+      }
+
+      .footer strong {
+        color: var(--primary-color);
+      }
+
+      .footer a {
+        color: var(--secondary-color);
+        transition: var(--transition);
+      }
+
+      .footer a:hover {
+        color: var(--primary-color);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero.is-primary .title {
+          font-size: 2rem;
+        }
+
+        .hero.is-primary .subtitle {
+          font-size: 1.2rem;
+        }
+
+        .section .title {
+          font-size: 2rem;
+        }
+
+        .section .subtitle {
+          font-size: 1rem;
+        }
+
+        .navbar-menu {
+          background: var(--card-background);
+          backdrop-filter: blur(10px);
+          border-radius: var(--border-radius);
+          margin-top: 1rem;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -162,6 +334,13 @@
     </footer>
 
     <script>
+      // Initialize Supabase client
+      const { createClient } = supabase;
+      const supabaseUrl = 'https://ftnozlnzjctklpmtbmix.supabase.co'; // Your Supabase URL
+      const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0bm96bG56amN0a2xwbXRibWl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc3MTE1MTMsImV4cCI6MjA1MzI4NzUxM30.x8udPBoquY0Ia4QN-GhhMDUdy7eoakhApenMG-xw4yo'; // Your Supabase anonymous key
+      const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+      // Handle form submission
       document.getElementById('contact-form').addEventListener('submit', async (event) => {
         event.preventDefault();
 
@@ -171,8 +350,9 @@
         const subject = formData.get('subject');
         const message = formData.get('message');
 
+        // Insert data into Supabase
         const { data, error } = await supabaseClient
-          .from('entries')  // Your table name
+          .from('entries') // Your table name
           .insert([{ name, email, subject, message }]);
 
         if (error) {
@@ -180,7 +360,7 @@
           alert('There was an error submitting the form. Please try again.');
         } else {
           alert('Form submitted successfully!');
-          event.target.reset();
+          event.target.reset(); // Reset the form
         }
       });
     </script>
